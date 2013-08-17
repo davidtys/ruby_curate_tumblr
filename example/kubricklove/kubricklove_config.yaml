@@ -1,0 +1,20 @@
+client:
+  is_running:             true
+  sleep_before_client_min:    1
+  sleep_before_client_max:    3
+  sleep_before_follow_min:    3*60
+  sleep_before_follow_max:    6*60
+  max_requests_and_posts: 80
+  max_posted:             50
+  max_reblogged:          40
+  max_followed:           30
+  oauth:
+    consumer_key:        ""
+    consumer_secret:     ""
+    token:               ""
+    token_secret:        ""
+
+infos:
+  tags:                  "kubrick, film, classic"
+  title:                 "Kubrick Love <br>&nbsp;&nbsp;&nbsp;&nbsp;Kubrick Photos, Films & Secrets"
+

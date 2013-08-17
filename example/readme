@@ -1,0 +1,9 @@
+Reblog and follow tumblr links in the queue of a (fictive) kubricklove.tumblr.com
+
+kubricklove_reblog.rb :
+For each tumblr link, it puts the link in queue with tags and title, puts the tumblr and the source in tofollow links, and search in content if there is any link to follow or to add to external links    
+Reblog and Follow scripts set the tumblr name and the folder for config, links and logs.
+
+Important : this tumblr doesn't exist and oauth in config yaml is empty
+You can copy this example and make it work by replacing "kubricklove" by your tumblr name and set valid oauth in config file 
+To config oauth please follow the tumblr documentation (your tumblr must give the authorization to the application) : http://www.tumblr.com/docs/en/api/v2#blog-likes
