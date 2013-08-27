@@ -14,10 +14,14 @@ require 'curate_tumblr'
 
 **CurateTumblr.reblog( "kubricklove", "/home/tumblr" )**
 
-reblog links in the queue of tumblr "kubricklove" where config is in 
-/home/tumblr/kubricklove/kubricklove_config.yaml
-and links to reblog are in 
-/home/tumblr/kubricklove/links/kubricklove_links
+reblog links in the queue of tumblr "kubricklove" 
+
+where links to reblog are in 
+*/home/tumblr/kubricklove/links/kubricklove_links*
+
+and config is in 
+*/home/tumblr/kubricklove/kubricklove_config.yaml*
+
 
 ### Features
 
