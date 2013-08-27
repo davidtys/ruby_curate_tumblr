@@ -14,7 +14,7 @@ gem install curate_tumblr
 
 **CurateTumblr.reblog( "kubricklove", "/home/tumblr" )**
 
-reblog links in the queue of tumblr "kubricklove" 
+reblog links **in the queue** of tumblr *kubricklove* 
 
 where links to reblog are in 
 */home/tumblr/kubricklove/links/kubricklove_links*
