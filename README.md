@@ -194,8 +194,10 @@ If strange things happen :
 
 ### About reblog
 
-To reblog a post you need its reblog key
-You have to send a request to tumblr with the post tumblr and id
+To reblog a post you need its reblog key.
+
+You have to send a request to tumblr with the post tumblr and id.
+
 You can use :
 
 *CurateTumblr::Tumblr::ExtractLinks.get_reblog_key_from_reblog_url*
