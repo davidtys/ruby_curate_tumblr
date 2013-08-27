@@ -202,6 +202,8 @@ You can use :
 
 *CurateTumblr::Tumblr::ExtractLinks.get_reblog_key_from_reblog_url*
 
+and *reblog_post_key* in CurateTumblr::Publish.Reblog
+
 
 ## Todo
 
