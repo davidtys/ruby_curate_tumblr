@@ -10,6 +10,8 @@ gem install curate_tumblr
 
 ### Quick Example
 
+require 'curate_tumblr'
+
 **CurateTumblr.reblog( "kubricklove", "/home/tumblr" )**
 
 reblog links in the queue of tumblr "kubricklove" where config is in 
@@ -22,7 +24,7 @@ and links to reblog are in
 * *polite with tumblr* : random sleep and stop if tumblr send errors
 * *extract informations from posts* : other tumblrs to follow, external links to see...
 * *add visibility to your reblogs* : add tags and link
-* *separate follow from reblog* : to organize your crons 
+* *separate follow from reblog* : not to waste Tumblr requests
 * *config in realtime* : you can stop it or change parameters when running
 
 ### Important
@@ -61,6 +63,8 @@ At the end you must have this codes :
 
 
 ### Config
+
+Curate Tumblr uses the name of your tumblr to find the folder for links (to reblog and follow) and config file
 
 #### Create folders
 
@@ -128,18 +132,18 @@ curator.reblog_and_extract( "http://oh-lesedi.tumblr.com" )
 ## Config options
 
 client: basic config for manage Tumblr
-  * is_running: if false stop the application
-  * sleep_before_client_min and max : random sleep before each request (important to not be blocked by Tumblr)
-  * sleep_before_follow_min and max : random sleep before following, can simulate a queue
-  * max_requests_and_posts: max of all requests before stop 
-  * max_posted: max of posted (text, image) before stop
-  * max_reblogged: max of reblogged before stop
-  * max_followed: max of followed before stop
-  * oauth: consumer_key, consumer_secret, token, token_secret
+  * *is_running* : if false stop the application
+  * *sleep_before_client_min and max* : random sleep before each request (important to not be blocked by Tumblr)
+  * *sleep_before_follow_min and max* : random sleep before following, can simulate a queue
+  * *max_requests_and_posts* : max of all requests before stop 
+  * *max_posted* : max of posted (text, image) before stop
+  * *max_reblogged* : max of reblogged before stop
+  * *max_followed* : max of followed before stop
+  * *oauth: consumer_key, consumer_secret, token, token_secret*
 
 infos: infos to add to your posts
-  * tags: a string with list of tags
-  * title: to add a link to your tumblr   
+  * *tags* : a string with list of tags
+  * *title* : to add a link to your tumblr   
 
 
 ## Rspec 
@@ -188,6 +192,14 @@ If strange things happen :
 * check oauth is ok in your config file
 * check log file (ex in /home/tumblr/mytumblrtest/logs)
 
+### About reblog
+
+To reblog a post you need its reblog key
+You have to send a request to tumblr with the post tumblr and id
+You can use :
+
+*CurateTumblr::Tumblr::ExtractLinks.get_reblog_key_from_reblog_url*
+
 
 ## Todo
 
@@ -198,5 +210,6 @@ If strange things happen :
 ## Copyright
 
 The Curate Tumblr gem is Copyright (c) 2013 David Tysman and is licensed under the MIT License.
+Feel free to use it for any project.
 
 Tumblr is Copyright (c) Tumblr, Inc. The Curate Tumblr gem is NOT affiliated with Tumblr, Inc.
