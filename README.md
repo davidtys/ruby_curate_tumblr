@@ -5,6 +5,8 @@ Reblog and follow in your Tumblr from a file of links.
 Grow you Tumblr audience by automating the boring tasks !
 
 **v1.0.4**
+* Display error message if directories or files don't exist
+
 
 ### Installation
 
