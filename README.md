@@ -16,10 +16,10 @@ gem install curate_tumblr
 
 reblog links **in the queue** of tumblr *kubricklove* 
 
-where links to reblog are in 
+where **links to reblog** are in file  
 */home/tumblr/kubricklove/links/kubricklove_links*
 
-and config is in 
+and **config (with oauth)** is in 
 */home/tumblr/kubricklove/kubricklove_config.yaml*
 
 
@@ -221,3 +221,5 @@ The Curate Tumblr gem is Copyright (c) 2013 David Tysman and is licensed under t
 Feel free to use it for any project.
 
 Tumblr is Copyright (c) Tumblr, Inc. The Curate Tumblr gem is NOT affiliated with Tumblr, Inc.
+
+www.davidtysman.com
