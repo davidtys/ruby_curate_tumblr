@@ -24,11 +24,13 @@ module CurateTumblr
         if !CurateTumblr.post_id_valid?( post_id )
           return return_error( __method__, "post_id not valid", { post_id: post_id, reblog_url: reblog_url } ) 
         end
+        return false if @is_stop
         reblog_key = CurateTumblr::Tumblr::ExtractLinks.get_reblog_key_from_reblog_url( reblog_url )
         if !CurateTumblr.reblog_key_valid?( reblog_key )
           return return_error( __method__, "reblog_key not valid", { reblog_key: reblog_key, post_id: post_id, reblog_url: reblog_url } ) 
         end
         new_post_id = reblog_post_key( post_id, reblog_key )  
+        return false if @is_stop
         add_tofollow_source_from_post_id( @tumblr_name, new_post_id )
         new_post_id
       end

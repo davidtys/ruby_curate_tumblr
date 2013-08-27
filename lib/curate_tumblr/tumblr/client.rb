@@ -118,6 +118,7 @@ module CurateTumblr
 	    tumblr_url = get_tumblr_domain if tumblr_url.empty?
 
 	    hash_posts_multiple = client_get_posts( tumblr_url, post_id )
+      return false if hash_posts_multiple.has_key?( "status" ) && !check_hash_status( hash_posts_multiple)
 	    if !CurateTumblr.hash_multiple_posts_valid?( hash_posts_multiple )
 	      log_tumblr.error "#{__method__} hash_posts_multiple #{hash_posts_multiple} are not valid for tumblr_url=#{tumblr_url} and post_id=#{post_id}"
 	      return false 
@@ -228,11 +229,17 @@ module CurateTumblr
 	      @count_continuous_bad_requests = 0 
 	      return status_ok 
 	    end
-	    return bad_request( is_display, is_log ) if CurateTumblr.hash_status_bad_request?( hash_status )
-	    return rate_limit_exceeded( is_display, is_log ) if CurateTumblr.hash_status_rate_limit?( hash_status )
+      check_hash_status( hash_status, is_display, is_log )
 	    log_tumblr.error( "bad status result #{hash_status}" )
 	    false
 		end
+
+    def check_hash_status( hash_status, is_display=true, is_log=true )
+      return not_authorized( is_display, is_log ) if CurateTumblr.hash_status_not_authorized?( hash_status )
+      return rate_limit_exceeded( is_display, is_log ) if CurateTumblr.hash_status_rate_limit?( hash_status )
+      return bad_request( is_display, is_log ) if CurateTumblr.hash_status_bad_request?( hash_status )
+      true
+    end
 
 		def get_status_if_ok( hash_status )
 			return hash_status if !hash_status.is_a? Hash
@@ -245,6 +252,11 @@ module CurateTumblr
 	    stop_and_alert( "Tumblr Rate Limit Exceeded, better wait one hour", is_display, is_log )
 	    false
 		end    
+
+    def not_authorized( is_display=true, is_log=true )
+      stop_and_alert( "Not authorized by Tumblr, please check oauth in the config file #{get_filename_config}", is_display, is_log )
+      false
+    end   
 
 	  def bad_request( is_display=true, is_log=true )
 	    @count_continuous_bad_requests += 1

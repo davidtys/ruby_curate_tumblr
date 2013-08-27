@@ -52,6 +52,10 @@ module CurateTumblr
 	  hash_status?( hash_status, CLIENT_STATUS_BAD_REQUEST )
 	end
 
+  def self.hash_status_not_authorized?( hash_status )
+    hash_status?( hash_status, CLIENT_STATUS_NOT_AUTHORIZED )
+  end
+
 	def self.hash_status?( hash_status, status )
 	  return true if !hash_status.has_key?( "status" )
 	  return true if hash_status["status"] == status
