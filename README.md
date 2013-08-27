@@ -4,6 +4,8 @@ Reblog and follow in your Tumblr from a file of links.
 
 Grow you Tumblr audience by automating the boring tasks !
 
+**v1.0.3**
+
 ### Installation
 
 gem install curate_tumblr
@@ -16,8 +18,7 @@ gem install curate_tumblr
 
 reblog links **in the queue** of tumblr *kubricklove* 
 
-where **links to reblog** are in file  
-*/home/tumblr/kubricklove/links/kubricklove_links*
+where **links to reblog** are in file */home/tumblr/kubricklove/links/kubricklove_links*
 
 and **config (with oauth)** is in 
 */home/tumblr/kubricklove/kubricklove_config.yaml*
@@ -36,6 +37,7 @@ and **config (with oauth)** is in
 Please note before all **you have to config oauth** for your tumblr (and put the codes in the config file, see below).
 
 You can see an example of reblog and follow for a kubrick tumblr in the *example* folder.
+
 
 ## Usage
 

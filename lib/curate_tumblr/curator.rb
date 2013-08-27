@@ -51,15 +51,21 @@ module CurateTumblr
  		end
 
  		def init_tumblr!( hash_config={} )
-       hash_config = get_config_from_yaml if hash_config.empty?
-       set_log
-			 init_client!( hash_config )
-       init_infos!( hash_config )
-       init_extract_links!( hash_config )
-       init_follow!( hash_config )
-       init_reblog!( hash_config )
-       init_post!( hash_config )
-       @is_stop = false    
+      @is_stop = false   
+      check_config_files 
+      hash_config = get_config_from_yaml if hash_config.empty? && !is_stop
+      if @is_stop
+        puts "\nError : the application can't init. Please check the paths and the config file"
+        return false
+      end
+      set_log
+			init_client!( hash_config )
+      init_infos!( hash_config )
+      init_extract_links!( hash_config )
+      init_follow!( hash_config )
+      init_reblog!( hash_config )
+      init_post!( hash_config )
+      true
  		end
 
     def config_from_yaml
@@ -68,7 +74,42 @@ module CurateTumblr
       config_infos( hash_config )
     end      
 
+    def check_config_files
+      if !Dir.exists?( @directory )
+        puts "\nOups! The directory #{@directory} doesn't exist. \nYou need it for your tumblrs subdirectories. \nPlease create it or change the path."
+        @is_stop = true
+        return false
+      end
+      if !Dir.exists?( get_path_tumblr )
+        puts "\nOups! The directory #{get_path_tumblr} doesn't exist. \nYou need it for your tumblr links and config. \nPlease create it or change the path."
+        @is_stop = true
+        return false
+      end    
+      if !Dir.exists?( get_path_links )
+        puts "\nOups! The directory #{get_path_links} doesn't exist. \nYou need it for set the links to follow and reblog. \nPlease create it or change the path."
+        @is_stop = true
+        return false
+      end    
+      if !Dir.exists?( get_path_logs )
+        puts "\nOups! The directory #{get_path_logs} doesn't exist. \nThe application needs it for write logs. \nPlease create it or change the path."
+        @is_stop = true
+        return false
+      end    
+      if !File.exists?( get_filename_config )
+        puts "\nOups! The config file #{get_filename_config} doesn't exist. \nYou need it for set oauth tokens. \nPlease create it or change the path."
+        @is_stop = true
+        return false
+      end 
+      if !File.exists?( get_filename_links )
+        puts "\nOups! The file #{get_filename_links} doesn't exist. \nYou need it for set the links to reblog. \nPlease create it or change the path."
+        @is_stop = true
+        return false
+      end               
+      true
+    end
+
     def get_config_from_yaml
+      return false if @is_stop
       file_yaml = get_filename_config
       raise "config file YAML #{file_yaml} doesn't exist" if !File.exist?( file_yaml )
       begin

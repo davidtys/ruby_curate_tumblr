@@ -8,6 +8,7 @@ module CurateTumblr
             
       class << self
         def render( object_render, name, is_display_infos=true )
+          return false if object_render.is_stop
           puts "\n#{name} begin at #{Time.now.strftime("%H:%m")} (max #{object_render.get_max})" if is_display_infos
           object_render.render_links_from_file
           puts "\n#{name} end at #{Time.now.strftime("%H:%m")}" if is_display_infos
