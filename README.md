@@ -10,7 +10,7 @@ gem install curate_tumblr
 
 ### Quick Example
 
-require 'curate_tumblr'
+** require 'curate_tumblr' **
 
 **CurateTumblr.reblog( "kubricklove", "/home/tumblr" )**
 
@@ -33,7 +33,7 @@ and config is in
 
 ### Important
 
-Please note before all **you have to config oauth** for your tumblr.
+Please note before all **you have to config oauth** for your tumblr (and put the codes in the config file, see below).
 
 You can see an example of reblog and follow for a kubrick tumblr in the *example* folder.
 
