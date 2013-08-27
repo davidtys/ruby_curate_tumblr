@@ -10,7 +10,7 @@ gem install curate_tumblr
 
 ### Quick Example
 
-** require 'curate_tumblr' **
+**require 'curate_tumblr'**
 
 **CurateTumblr.reblog( "kubricklove", "/home/tumblr" )**
 
