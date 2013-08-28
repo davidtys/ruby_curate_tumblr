@@ -92,20 +92,44 @@ module CurateTumblr
         return error_config( "The directory #{@directory} doesn't exist", "You need it for your tumblrs subdirectories. \nPlease create it or change the path." )
       end
       if !Dir.exists?( get_path_tumblr )
-        return error_config( "Oups! The directory #{get_path_tumblr} doesn't exist", "You need it for your tumblr links and config. \nPlease create it or change the path." )
+        return error_config( "The directory #{get_path_tumblr} doesn't exist", "You need it for your tumblr links and config. \nPlease create it or change the path." )
       end    
       if !Dir.exists?( get_path_links )
-        return error_config( "Oups! The directory #{get_path_links} doesn't exist", "You need it for set the links to follow and reblog. \nPlease create it or change the path." )
+        return error_config( "The directory #{get_path_links} doesn't exist", "You need it for set the links to follow and reblog. \nPlease create it or change the path." )
       end    
       if !Dir.exists?( get_path_logs )
-        return error_config( "Oups! The directory #{get_path_logs} doesn't exist", "The application needs it for write logs. \nPlease create it or change the path." )
+        return error_config( "The directory #{get_path_logs} doesn't exist", "The application needs it for write logs. \nPlease create it or change the path." )
       end    
       if !File.exists?( get_filename_config )
-        return error_config( "Oups! The config file #{get_filename_config} doesn't exist", "You need it for set oauth tokens. \nPlease create it or change the path." )
+        return error_config( "The config file #{get_filename_config} doesn't exist", "You need it for set oauth tokens. \nPlease create it or change the path." )
       end 
       if !File.exists?( get_filename_links )
-        return error_config( "Oups! The file #{get_filename_links} doesn't exist", "You need it for set the links to reblog. \nPlease create it or change the path." )
-      end               
+        return error_config( "The file #{get_filename_links} doesn't exist", "You need it for set the links to reblog. \nPlease create it or change the path." )
+      end   
+      return false if !check_config_key( Tumblr::Client::HASH_CONFIG_CLIENT_OAUTH, "you need to write it in config file to write inside the oauth tokens to send requests to Tumblr", false )
+      return false if !check_config_key( Tumblr::Client::HASH_CONFIG_CLIENT_OAUTH_CONSUMER_KEY, "you need to write it inside '#{Tumblr::Client::HASH_CONFIG_CLIENT_OAUTH}' in config file to send requests to Tumblr" )
+      return false if !check_config_key( Tumblr::Client::HASH_CONFIG_CLIENT_OAUTH_CONSUMER_SECRET, "you need to write it inside '#{Tumblr::Client::HASH_CONFIG_CLIENT_OAUTH}' in config file to send requests to Tumblr" )
+      return false if !check_config_key( Tumblr::Client::HASH_CONFIG_CLIENT_OAUTH_TOKEN, "you need to write it inside '#{Tumblr::Client::HASH_CONFIG_CLIENT_OAUTH}' in config file to send requests to Tumblr" )
+      return false if !check_config_key( Tumblr::Client::HASH_CONFIG_CLIENT_OAUTH_TOKEN_SECRET, "you need to write it inside '#{Tumblr::Client::HASH_CONFIG_CLIENT_OAUTH}' in config file to send requests to Tumblr" )
+      true      
+    end
+
+    def check_config_key( key, about, is_check_empty=true )
+      ar_key = []
+      File.open( get_filename_config, "r" ) do |file_config|
+        ar_key = file_config.grep( /#{key}:/ )
+        if ar_key.count <= 0 
+          return error_config( "There is no '#{key}' in #{get_filename_config}", about )
+        end
+      end
+      if is_check_empty
+        if ar_key[0].split(":").count <= 1
+          return error_config( "'#{key}' is empty in #{get_filename_config}", about )
+        end
+        if ar_key[0].split(":")[1].gsub( /\s+/, "" ).gsub( /"/, "" ).empty?
+          return error_config( "'#{key}' is empty in #{get_filename_config}", about )
+        end
+      end
       true
     end
 

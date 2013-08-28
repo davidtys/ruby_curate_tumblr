@@ -4,6 +4,7 @@ Reblog and follow in your Tumblr from a file of links.
 
 Grow you Tumblr audience by automating the boring tasks !
 
+
 ### Installation
 
 gem install curate_tumblr
@@ -222,10 +223,15 @@ and *reblog_post_key* to reblog it in CurateTumblr::Publish::Reblog
 * hidden oauth (are you enough paranoid ?)
 
 
+## Versions ##
+
+### v1.0.6 ###
+* Better error messages if no oauth in config file
+
 ### v1.0.5 ###
 * Stop if Tumblr error "Not Authorized" (bad oauth)
 
-v1.0.4
+### v1.0.4 ###
 * Better error messages if problem with directories or config file
 
 

@@ -1,7 +1,7 @@
 require 'factory_girl'
 
 def get_tumblr_name
-  "testitnowyeah13"
+  "testitnowyeah14"
 end
 
 def get_tumblr_directory
