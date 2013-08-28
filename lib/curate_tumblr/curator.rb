@@ -53,23 +53,36 @@ module CurateTumblr
  		def init_tumblr!( hash_config={} )
       @is_stop = false   
       check_config_files 
+      return false if !check_init_ok
       hash_config = get_config_from_yaml if hash_config.empty? && !is_stop
-      if @is_stop
-        puts "\nError : the application can't init. Please check the paths and the config file"
-        return false
-      end
+      return false if !check_init_ok
       set_log
+      return false if !check_init_ok
 			init_client!( hash_config )
+      return false if !check_init_ok
       init_infos!( hash_config )
+      return false if !check_init_ok
       init_extract_links!( hash_config )
+      return false if !check_init_ok
       init_follow!( hash_config )
+      return false if !check_init_ok
       init_reblog!( hash_config )
+      return false if !check_init_ok
       init_post!( hash_config )
+      return false if !check_init_ok
       true
  		end
 
+    def check_init_ok
+      return return_error( __method__, "the application can't init. Please check the paths and the config file", {}, true ) if @is_stop
+      true
+    end
+
     def config_from_yaml
       hash_config = get_config_from_yaml
+      return false if !check_init_ok
+      raise "can't get config from file #{get_filename_config}" if !hash_config
+      raise "config is empty from file #{get_filename_config}" if hash_config.empty?
       config_client( hash_config )
       config_infos( hash_config )
     end      
@@ -109,7 +122,10 @@ module CurateTumblr
     end
 
     def get_config_from_yaml
-      return false if @is_stop
+      if @is_stop
+        @log_tumblr.error( "don't get config because must stop" )
+        return false
+      end
       file_yaml = get_filename_config
       raise "config file YAML #{file_yaml} doesn't exist" if !File.exist?( file_yaml )
       begin
@@ -147,6 +163,8 @@ module CurateTumblr
     # --- files ---
 
     def add_tofollow_tofile( is_delete_tofollow=true )
+      raise "no urls to follow" if !@all_tofollow_urls
+      return false if @all_tofollow_urls.empty?
       @all_tofollow_urls = CurateTumblr.get_format_tumblr_urls( @all_tofollow_urls )
       return false if !CurateTumblr.add_set_tofile_without_repeat( get_filename_tofollow, @all_tofollow_urls  ) 
       @all_tofollow_urls = Set.new if is_delete_tofollow
@@ -224,17 +242,18 @@ module CurateTumblr
       stop_it!
     end  
 
-    def error( method, message, hash_infos={} )
+    def error( method, message, hash_infos={}, is_display=false )
       error = "#{@domain} : #{message} in #{method} "
       if !hash_infos.empty?
       error = error + " with" 
       hash_infos.each { |key, value| error = error + " [#{key} : #{value}]" }
       end
-      @log_tumblr.error( error )
+      @log_tumblr.error( error ) if !@log_tumblr.nil?
+      puts "\nError : #{message}" if is_display || @log_tumblr.nil?
      end
        
-    def return_error( method, message, hash_infos={} )
-      error( method, message, hash_infos )
+    def return_error( method, message, hash_infos={}, is_display=false )
+      error( method, message, hash_infos, is_display )
       false
     end    
   end

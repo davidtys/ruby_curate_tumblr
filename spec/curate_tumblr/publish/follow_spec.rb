@@ -7,6 +7,10 @@ describe CurateTumblr::Publish::Follow do
   include_context "shared caption post"
   let(:curator) { FactoryGirl.build( :curator ) }
 
+  before do
+    File.open( curator.get_filename_links, 'w' ) { |file| file.puts "" }
+  end
+  
   describe "to follow after" do
   	it "should follow all links in caption when no source" do
       ar_links = curator.send( :add_tofollow_tumblr_links_from_caption, caption )

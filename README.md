@@ -4,8 +4,9 @@ Reblog and follow in your Tumblr from a file of links.
 
 Grow you Tumblr audience by automating the boring tasks !
 
-### v1.0.4 ###
-* Display error message if directories or files don't exist
+### v1.0.5 ###
+* Stop if Tumblr error "Not Authorized" (bad oauth)
+* Better errors messages if problem with directories or config file
 
 
 ### Installation
@@ -38,7 +39,7 @@ and **config (with oauth)** is in
 
 Please note before all **you have to config oauth** for your tumblr (and put the codes in the config file, see below).
 
-You can see an example of reblog and follow for a kubrick tumblr in the *example* folder.
+You can see an example of reblog and follow for a kubrick tumblr in the *example* directory.
 
 
 ## Usage
@@ -72,19 +73,19 @@ At the end you must have this codes :
 
 ### Config
 
-Curate Tumblr uses the name of your tumblr to find the folder for links (to reblog and follow) and config file
+Curate Tumblr uses the name of your tumblr to find the directory for links (to reblog and follow) and config file
 
-#### Create folders
+#### Create directories
 
-Create a folder where you will have your config and links files :
+Create a directory where you will have your config and links files :
 
 ex : /home/tumblr
 
-Create in this folder another folder with your test tumblr name :
+Create in this directory another directory with your test tumblr name :
 
 ex : /home/tumblr/mytumblrtest
 
-In this folder create a folder links and a folder logs
+In this directory create a directory links and a directory logs
 
 ex :
 
@@ -95,7 +96,7 @@ ex :
 
 #### Create config file
 
-Create a config file in this folder. 
+Create a config file in this directory. 
 
 You can copy *kubricklove_config.yaml* from the example and rename it with your tumblr name :
 
@@ -173,6 +174,7 @@ in the config file set oauth
 
 The application manage these tumblr errors :
 * *Rate limit exceeded* : too much requests, try to incread the sleep time in config file **=> the application stop**
+* *No authorized* : problem with oauth in the config file, tokens may be bad **=> the application stop**
 * *Bad request* : perhaps the link has been deleted
 * *Too much bad requests* : there is no enough place in the queue, or there is a problem with your tumblr **=> the application stop**
 

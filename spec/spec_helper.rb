@@ -75,7 +75,7 @@ def files_before( render, links='' )
 end  
 
 def files_after( render )
-  File.delete( render.filename_links ) if File.exists?( render.filename_links )
+ #File.delete( render.filename_links ) if File.exists?( render.filename_links )
 end
 
 def get_status_rate_exceed

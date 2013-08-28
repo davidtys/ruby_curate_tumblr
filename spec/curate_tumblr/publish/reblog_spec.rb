@@ -6,6 +6,10 @@ describe CurateTumblr::Publish::Reblog do
   include_context "shared tags"
   let(:curator) { FactoryGirl.build( :curator ) }
 
+  before do
+    File.open( curator.get_filename_links, 'w' ) { |file| file.puts "" }
+  end
+  
   describe "reblog link" do
     let(:tumblr_url) { "youknow-thisistheend.tumblr.com" }
     let(:post_url) {  "http://youknow-thisistheend.tumblr.com/post/54773810226/facebook-auf-we-heart-it" }

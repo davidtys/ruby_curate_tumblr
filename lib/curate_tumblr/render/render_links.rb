@@ -89,7 +89,7 @@ module CurateTumblr
       private
 
         def check_if_stop
-          @is_stop = true if get_count >= get_max
+          @is_stop = true if get_count && get_max && get_count >= get_max 
           @is_stop = @curator.is_stop if !@is_stop
           @is_stop
         end

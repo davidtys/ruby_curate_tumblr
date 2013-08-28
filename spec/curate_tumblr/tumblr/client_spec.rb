@@ -6,6 +6,10 @@ describe CurateTumblr::Tumblr::Client do
 	include_context "shared targets"
 	include_context "shared links"
 
+  before do
+    File.open( curator.get_filename_links, 'w' ) { |file| file.puts "" }
+  end
+
 	describe "status" do
 	  it "when rate exceed" do
 	    hash_status = get_status_rate_exceed

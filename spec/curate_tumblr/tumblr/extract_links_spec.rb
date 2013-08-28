@@ -6,6 +6,10 @@ describe "Extract" do
 
   include_context "shared targets"
 
+  before do
+    File.open( curator.get_filename_links, 'w' ) { |file| file.puts "" }
+  end
+  
   describe "from post url" do
     it "is tumblr from post url" do
       CurateTumblr::Tumblr::ExtractLinks.tumblr_url?( target_post_url ).should be_true

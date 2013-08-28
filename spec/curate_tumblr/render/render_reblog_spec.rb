@@ -19,6 +19,7 @@ describe CurateTumblr::Render::RenderLinks do
     end    
   end
 
+
   describe "get reblog links from file" do
     it "read links" do
       ar_file = render_reblog.get_links_torender_from_file
@@ -52,10 +53,10 @@ describe CurateTumblr::Render::RenderLinks do
         render_reblog.links_to_render.count.should eq( links.count )
       end
     end
-  end
+end
+
 
   describe "render" do
-
     it "all links" do
      render_reblog.render_links_from_file.should be_true 
      render_reblog.get_count.should eq( count_reblogs )

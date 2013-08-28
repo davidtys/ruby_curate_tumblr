@@ -4,6 +4,10 @@ describe CurateTumblr::Publish::Post do
   include_context "shared targets"
   let(:curator) { FactoryGirl.build( :curator ) }
 
+  before do
+    File.open( curator.get_filename_links, 'w' ) { |file| file.puts "" }
+  end
+  
   describe "get infos post" do
     it "hash post from tumblr and id post" do
       hash_post = curator.get_hash_post( target_tumblr, target_post_id )      
