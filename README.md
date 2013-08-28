@@ -225,13 +225,13 @@ and *reblog_post_key* to reblog it in CurateTumblr::Publish::Reblog
 
 ## Versions ##
 
-### v1.0.6 ###
+v1.0.6
 * Better error messages if no oauth in config file
 
-### v1.0.5 ###
+v1.0.5
 * Stop if Tumblr error "Not Authorized" (bad oauth)
 
-### v1.0.4 ###
+v1.0.4
 * Better error messages if problem with directories or config file
 
 
