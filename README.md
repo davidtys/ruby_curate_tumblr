@@ -211,7 +211,7 @@ In infos hash post from Tumblr you'll have the reblog key
 
 You can use :
 
-*get_hash_post in CurateTumblr::Publish::Client
+*get_hash_post* in CurateTumblr::Publish::Client
 to have the reblog key 
 
 or
