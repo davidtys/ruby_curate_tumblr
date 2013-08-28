@@ -89,36 +89,30 @@ module CurateTumblr
 
     def check_config_files
       if !Dir.exists?( @directory )
-        puts "\nOups! The directory #{@directory} doesn't exist. \nYou need it for your tumblrs subdirectories. \nPlease create it or change the path."
-        @is_stop = true
-        return false
+        return error_config( "The directory #{@directory} doesn't exist", "You need it for your tumblrs subdirectories. \nPlease create it or change the path." )
       end
       if !Dir.exists?( get_path_tumblr )
-        puts "\nOups! The directory #{get_path_tumblr} doesn't exist. \nYou need it for your tumblr links and config. \nPlease create it or change the path."
-        @is_stop = true
-        return false
+        return error_config( "Oups! The directory #{get_path_tumblr} doesn't exist", "You need it for your tumblr links and config. \nPlease create it or change the path." )
       end    
       if !Dir.exists?( get_path_links )
-        puts "\nOups! The directory #{get_path_links} doesn't exist. \nYou need it for set the links to follow and reblog. \nPlease create it or change the path."
-        @is_stop = true
-        return false
+        return error_config( "Oups! The directory #{get_path_links} doesn't exist", "You need it for set the links to follow and reblog. \nPlease create it or change the path." )
       end    
       if !Dir.exists?( get_path_logs )
-        puts "\nOups! The directory #{get_path_logs} doesn't exist. \nThe application needs it for write logs. \nPlease create it or change the path."
-        @is_stop = true
-        return false
+        return error_config( "Oups! The directory #{get_path_logs} doesn't exist", "The application needs it for write logs. \nPlease create it or change the path." )
       end    
       if !File.exists?( get_filename_config )
-        puts "\nOups! The config file #{get_filename_config} doesn't exist. \nYou need it for set oauth tokens. \nPlease create it or change the path."
-        @is_stop = true
-        return false
+        return error_config( "Oups! The config file #{get_filename_config} doesn't exist", "You need it for set oauth tokens. \nPlease create it or change the path." )
       end 
       if !File.exists?( get_filename_links )
-        puts "\nOups! The file #{get_filename_links} doesn't exist. \nYou need it for set the links to reblog. \nPlease create it or change the path."
-        @is_stop = true
-        return false
+        return error_config( "Oups! The file #{get_filename_links} doesn't exist", "You need it for set the links to reblog. \nPlease create it or change the path." )
       end               
       true
+    end
+
+    def error_config( error, about )
+      puts "\nOups! #{error} \n#{about}"
+      @is_stop = true
+      false
     end
 
     def get_config_from_yaml
@@ -237,7 +231,7 @@ module CurateTumblr
     private
 
     def stop_and_alert(message, is_display=true, is_log=true )
-      @log_tumblr.error( message ) if is_log
+      @log_tumblr.error( message ) if is_log && @log_tumblr
       puts "\n*** Stop it ! #{message} ***" if is_display
       stop_it!
     end  
