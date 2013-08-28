@@ -225,6 +225,9 @@ and *reblog_post_key* to reblog it in CurateTumblr::Publish::Reblog
 
 ## Versions ##
 
+v1.0.7
+* Better check config file
+
 v1.0.6
 * Better error messages if no oauth in config file
 
