@@ -1,6 +1,6 @@
 # Curate Tumblr Ruby Gem
 
-Reblog and follow in your Tumblr from a file of links.
+Reblog, extract and follow in your Tumblr from a file of tumblr links.
 
 Grow you Tumblr audience by automating the boring tasks !
 
@@ -25,10 +25,11 @@ and **config (with oauth)** is in
 
 ### Features
 
+* *add tumblr links* to your tumblr queue
 * *polite with tumblr* : random sleep and stop if tumblr send errors
 * *extract informations from posts* : other tumblrs to follow, external links to see...
-* *add visibility to your reblogs* : add tags and link
-* *separate follow from reblog* : not to waste Tumblr requests
+* *add visibility to your reblogs* : add tags and link to your tumblr
+* *follow tumblr source and author* : in separate task to not to waste Tumblr requests
 * *config in realtime* : you can stop it or change parameters when running
 
 ### Important
