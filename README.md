@@ -6,7 +6,7 @@ Grow you Tumblr audience by automating the boring tasks !
 
 ### v1.0.5 ###
 * Stop if Tumblr error "Not Authorized" (bad oauth)
-* Better errors messages if problem with directories or config file
+* Better error messages if problem with directories or config file
 
 
 ### Installation
@@ -206,13 +206,19 @@ If strange things happen :
 
 To reblog a post you need its reblog key.
 
-You have to send a request to tumblr with the post tumblr and id.
+To have it you have to send a request to tumblr with the post tumblr and id.
+In infos hash post from Tumblr you'll have the reblog key
 
 You can use :
 
-*CurateTumblr::Tumblr::ExtractLinks.get_reblog_key_from_reblog_url*
+*get_hash_post in CurateTumblr::Publish::Client
+to have the reblog key 
 
-and *reblog_post_key* in CurateTumblr::Publish.Reblog
+or
+*CurateTumblr::Tumblr::ExtractLinks.get_reblog_key_from_reblog_url*
+if the url contains the reblog key (www.tumblr.com/reblog/...)
+
+and *reblog_post_key* to reblog it in CurateTumblr::Publish::Reblog
 
 
 ## Todo
