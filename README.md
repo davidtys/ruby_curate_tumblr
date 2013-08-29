@@ -176,6 +176,16 @@ The application manage these tumblr errors :
 * *Too much bad requests* : there is no enough place in the queue, or there is a problem with your tumblr **=> the application stop**
 
 
+## Display
+
+The application display little characters to tell what it's doing
+You can change it (or display nothing) in lib/curate_tumblr/values
+
+* (4) : sleep 4 seconds
+* 2> : reblog second post
+* 3: : follow third tumblr
+* ? : send request to have infos about a post
+
 ## Tips
 
 ### Realtime
