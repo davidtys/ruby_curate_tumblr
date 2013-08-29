@@ -226,6 +226,9 @@ and *reblog_post_key* to reblog it in CurateTumblr::Publish::Reblog
 
 ## Versions ##
 
+v1.0.8
+* Little bug in get_hash_post
+
 v1.0.7
 * Better check config file
 
