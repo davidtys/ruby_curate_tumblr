@@ -234,24 +234,6 @@ and *reblog_post_key* to reblog it in CurateTumblr::Publish::Reblog
 * hidden oauth (are you enough paranoid ?)
 
 
-## Versions ##
-
-v1.0.8
-* Little bug in get_hash_post
-
-v1.0.7
-* Better check config file
-
-v1.0.6
-* Better error messages if no oauth in config file
-
-v1.0.5
-* Stop if Tumblr error "Not Authorized" (bad oauth)
-
-v1.0.4
-* Better error messages if problem with directories or config file
-
-
 ## Copyright
 
 The Curate Tumblr gem is Copyright (c) 2013 David Tysman and is licensed under the MIT License.
