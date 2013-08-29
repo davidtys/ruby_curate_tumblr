@@ -3,6 +3,7 @@ Gem::Specification.new do |gem|
 	gem.add_dependency 'logger'
 	gem.name = 'curate_tumblr'
 	gem.version = '1.0.8'
+  gem.license = 'MIT'
 	gem.authors = ['David Tysman']
 	gem.description = 'CurateTumblr - reblog and follow Tumblr links, extract infos from the posts, add tags and links'
 	gem.summary = 'Reblog and follow Tumblr'
