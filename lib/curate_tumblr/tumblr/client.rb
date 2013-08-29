@@ -118,7 +118,7 @@ module CurateTumblr
 	    tumblr_url = get_tumblr_domain if tumblr_url.empty?
 
 	    hash_posts_multiple = client_get_posts( tumblr_url, post_id )
-      return false if hash_posts_multiple.has_key?( "status" ) && !check_hash_status( hash_posts_multiple)
+      return false if !hash_posts_multiple || hash_posts_multiple.has_key?( "status" ) && !check_hash_status( hash_posts_multiple)
 	    if !CurateTumblr.hash_multiple_posts_valid?( hash_posts_multiple )
 	      log_tumblr.error "#{__method__} hash_posts_multiple #{hash_posts_multiple} are not valid for tumblr_url=#{tumblr_url} and post_id=#{post_id}"
 	      return false 

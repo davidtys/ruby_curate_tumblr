@@ -58,15 +58,17 @@ end
 
   describe "render" do
     it "all links" do
-     render_reblog.render_links_from_file.should be_true 
-     render_reblog.get_count.should eq( count_reblogs )
-     render_reblog.get_all_published_id.count.should eq( count_reblogs )
-     links_file = render_reblog.get_links_torender_from_file
-     links_file.empty?.should be_true
+      render_reblog.get_max.should > count_reblogs 
+      render_reblog.render_links_from_file.should be_true 
+      render_reblog.get_count.should eq( count_reblogs )
+      render_reblog.get_all_published_id.count.should eq( count_reblogs )
+      links_file = render_reblog.get_links_torender_from_file
+      links_file.empty?.should be_true
     end
 
     it "direct reblog" do
       render = CurateTumblr.reblog( get_tumblr_name, get_tumblr_directory, false )
+      render.get_max.should > count_reblogs 
       render.get_count.should eq( count_reblogs )
     end
   end
