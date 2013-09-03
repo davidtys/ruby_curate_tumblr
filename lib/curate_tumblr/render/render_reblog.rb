@@ -2,14 +2,10 @@ module CurateTumblr
   module Render	
     class RenderReblog < RenderLinks
 
-      class << self
-
-      end
-
-	    def initialize( tumblr_name, directory='/home/tumblr' )
-	    	super( tumblr_name, directory )
-	    	@filename_links = @curator.get_filename_links
-	    end
+	  def initialize( tumblr_name, directory='/home/tumblr' )
+	    super( tumblr_name, directory )
+	    @filename_links = @curator.get_filename_links
+	  end
 
       def render_link( link, new_links, links_errors )
         @curator.reblog_and_extract( link ) 
