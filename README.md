@@ -1,8 +1,8 @@
 # Curate Tumblr Ruby Gem
 
-Reblog, extract and follow in your Tumblr from a file of tumblr links.
+Reblog contents, extract infos and follow contacts in your Tumblr, from a file of tumblr links.
 
-Grow you Tumblr audience by automating the boring tasks !
+Grow your Tumblr audience by automating the boring tasks !
 
 
 ### Installation
@@ -60,7 +60,7 @@ This application **must be authorized** by your tumblr
 
 #### Result
 
-At the end you must have this codes :
+At the end you must have these codes :
 
     consumer_key: XX        
     consumer_secret: XX     
@@ -170,7 +170,7 @@ in the config file set oauth
 ## Tumblr errors
 
 The application manage these tumblr errors :
-* *Rate limit exceeded* : too much requests, try to incread the sleep time in config file **=> the application stop**
+* *Rate limit exceeded* : too much requests, try to increase the sleep time in config file **=> the application stop**
 * *No authorized* : problem with oauth in the config file, tokens may be bad **=> the application stop**
 * *Bad request* : perhaps the link has been deleted
 * *Too much bad requests* : there is no enough place in the queue, or there is a problem with your tumblr **=> the application stop**
