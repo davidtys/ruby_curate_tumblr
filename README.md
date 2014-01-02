@@ -4,6 +4,8 @@ Reblog contents, extract infos and follow contacts in your Tumblr, from a file o
 
 Grow your Tumblr audience by automating the boring tasks !
 
+![Alt demo](readme/curate_tumblr.jpg)
+
 
 ### Installation
 
