@@ -7,7 +7,7 @@ module CurateTumblr
 
   def self.follow( tumblr_name, directory, is_display_infos=true )
     Render::RenderLinks.render( Render::RenderFollow.new( tumblr_name, directory ), __method__, is_display_infos )
-  end     
+  end       
 
   class Curator
     include Tumblr::Client
