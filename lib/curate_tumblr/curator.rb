@@ -17,7 +17,7 @@ module CurateTumblr
     include Publish::Reblog
     include Publish::Post
 
-   	attr_accessor :tumblr_name, :is_stop, :is_debug, :log_tumblr, :directory
+    attr_accessor :tumblr_name, :is_stop, :is_debug, :log_tumblr, :directory
 
     class << self
       def create_config_yaml_file( file_yaml, hash_config )
