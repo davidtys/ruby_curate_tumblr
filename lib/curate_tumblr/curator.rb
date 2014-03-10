@@ -71,7 +71,7 @@ module CurateTumblr
       init_post!( hash_config )
       return false if !check_init_ok
       true
- 	  end
+    end
 
     def check_init_ok
       return return_error( __method__, "the application can't init. Please check the paths and the config file", {}, true ) if @is_stop
