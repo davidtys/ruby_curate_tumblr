@@ -158,7 +158,7 @@ infos: infos to add to your posts
 
 **Before testing code you have to set oauth and create a config file** (you can copy the example config file)
 
-In *spec/factories.rb* change *get_tumblr_name* and *get_tumblr_directory*
+In *spec/factories.rb*, change *get_tumblr_name* and *get_tumblr_directory* to your tumblr name and your test directory  
 
 in the config file set oauth
   oauth:  

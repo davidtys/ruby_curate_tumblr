@@ -14,10 +14,12 @@ FactoryGirl.define do
   end
 
   factory :render_reblog, class: CurateTumblr::Render::RenderReblog do
+    create_directory_files
     initialize_with { CurateTumblr::Render::RenderReblog.new( get_tumblr_name, get_tumblr_directory ) }
   end
 
   factory :render_follow, class: CurateTumblr::Render::RenderFollow do
+    create_directory_files
     initialize_with { CurateTumblr::Render::RenderFollow.new( get_tumblr_name, get_tumblr_directory ) }
   end  
 end
